@@ -162,7 +162,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(523, 311);
+            ClientSize = new Size(697, 311);
             Controls.Add(label3);
             Controls.Add(btnMeow1);
             Controls.Add(btnGitHub);

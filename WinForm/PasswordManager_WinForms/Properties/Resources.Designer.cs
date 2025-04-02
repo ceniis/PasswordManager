@@ -63,66 +63,6 @@ namespace PasswordManager_WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap back {
-            get {
-                object obj = ResourceManager.GetObject("back", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Cat_icon {
-            get {
-                object obj = ResourceManager.GetObject("Cat-icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Cat_icon_63x63 {
-            get {
-                object obj = ResourceManager.GetObject("Cat-icon_63x63", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap git_ico {
-            get {
-                object obj = ResourceManager.GetObject("git ico", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap help_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24 {
-            get {
-                object obj = ResourceManager.GetObject("help_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap photo_2024_06_07_20_48_26 {
-            get {
-                object obj = ResourceManager.GetObject("photo_2024-06-07_20-48-26", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap photo_2024_06_07_20_48_26_288x288 {
             get {
                 object obj = ResourceManager.GetObject("photo_2024-06-07_20-48-26_288x288", resourceCulture);
