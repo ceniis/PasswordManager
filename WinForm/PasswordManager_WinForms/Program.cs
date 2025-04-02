@@ -12,6 +12,7 @@
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             LoginForm loginForm = new();
+
             if (loginForm.ShowDialog() == DialogResult.OK) 
             {
                 Application.Run(new MainForm()); 
