@@ -33,7 +33,7 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             label1 = new Label();
             label2 = new Label();
-            btnMeow1 = new Button();
+            btnMeow = new Button();
             pictureBox1 = new PictureBox();
             btnBack = new Button();
             btnInst = new Button();
@@ -63,25 +63,25 @@
             label2.TabIndex = 2;
             label2.Text = "The app allowes you to create strong passwords and save them. \r\nYou can find them again by the login\r\nBut before you'll gain an acces, please confirm that it's you in \r\nLogin window 😉\r\n";
             // 
-            // btnMeow1
+            // btnMeow
             // 
-            btnMeow1.BackColor = Color.WhiteSmoke;
-            btnMeow1.BackgroundImage = (Image)resources.GetObject("btnMeow1.BackgroundImage");
-            btnMeow1.BackgroundImageLayout = ImageLayout.Center;
-            btnMeow1.Cursor = Cursors.Hand;
-            btnMeow1.FlatAppearance.BorderColor = Color.DarkMagenta;
-            btnMeow1.FlatAppearance.BorderSize = 2;
-            btnMeow1.FlatAppearance.MouseOverBackColor = Color.Thistle;
-            btnMeow1.FlatStyle = FlatStyle.Flat;
-            btnMeow1.Font = new Font("Calisto MT", 10F);
-            btnMeow1.ForeColor = Color.White;
-            btnMeow1.Location = new Point(598, 236);
-            btnMeow1.Margin = new Padding(0);
-            btnMeow1.Name = "btnMeow1";
-            btnMeow1.Size = new Size(78, 66);
-            btnMeow1.TabIndex = 8;
-            btnMeow1.UseVisualStyleBackColor = false;
-            btnMeow1.Click += btnMeow1_Click;
+            btnMeow.BackColor = Color.WhiteSmoke;
+            btnMeow.BackgroundImage = (Image)resources.GetObject("btnMeow.BackgroundImage");
+            btnMeow.BackgroundImageLayout = ImageLayout.Center;
+            btnMeow.Cursor = Cursors.Hand;
+            btnMeow.FlatAppearance.BorderColor = Color.DarkMagenta;
+            btnMeow.FlatAppearance.BorderSize = 2;
+            btnMeow.FlatAppearance.MouseOverBackColor = Color.Thistle;
+            btnMeow.FlatStyle = FlatStyle.Flat;
+            btnMeow.Font = new Font("Calisto MT", 10F);
+            btnMeow.ForeColor = Color.White;
+            btnMeow.Location = new Point(598, 236);
+            btnMeow.Margin = new Padding(0);
+            btnMeow.Name = "btnMeow";
+            btnMeow.Size = new Size(78, 66);
+            btnMeow.TabIndex = 8;
+            btnMeow.UseVisualStyleBackColor = false;
+            btnMeow.Click += btnMeow_Click;
             // 
             // pictureBox1
             // 
@@ -164,7 +164,7 @@
             BackColor = Color.Gainsboro;
             ClientSize = new Size(697, 311);
             Controls.Add(label3);
-            Controls.Add(btnMeow1);
+            Controls.Add(btnMeow);
             Controls.Add(btnGitHub);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -184,7 +184,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Label label1;
         private Label label2;
-        private Button btnMeow1;
+        private Button btnMeow;
         private PictureBox pictureBox1;
         private Button btnBack;
         private Button btnInst;

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             btnGenerate = new Button();
             textBoxName = new TextBox();
             label1 = new Label();
@@ -44,7 +43,6 @@
             btnHelp = new Button();
             toolTip1 = new ToolTip(components);
             saveFileDialog1 = new SaveFileDialog();
-            btnMeow = new Button();
             label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
@@ -88,9 +86,9 @@
             label1.ForeColor = Color.Black;
             label1.Location = new Point(11, 12);
             label1.Name = "label1";
-            label1.Size = new Size(108, 24);
+            label1.Size = new Size(209, 24);
             label1.TabIndex = 2;
-            label1.Text = "Enter login:";
+            label1.Text = "Enter password's name:";
             // 
             // btnSearch
             // 
@@ -152,7 +150,7 @@
             // numericUpDown1
             // 
             numericUpDown1.Location = new Point(442, 70);
-            numericUpDown1.Margin = new Padding(2, 2, 2, 2);
+            numericUpDown1.Margin = new Padding(2);
             numericUpDown1.Maximum = new decimal(new int[] { 128, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 12, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
@@ -215,10 +213,11 @@
             // 
             btnHelp.Cursor = Cursors.Help;
             btnHelp.FlatAppearance.BorderSize = 0;
+            btnHelp.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
             btnHelp.FlatStyle = FlatStyle.Flat;
             btnHelp.Font = new Font("Segoe UI", 14F);
             btnHelp.ForeColor = Color.Navy;
-            btnHelp.Location = new Point(486, -4);
+            btnHelp.Location = new Point(477, -9);
             btnHelp.Margin = new Padding(0);
             btnHelp.Name = "btnHelp";
             btnHelp.Size = new Size(25, 45);
@@ -226,26 +225,6 @@
             btnHelp.Text = "❔";
             btnHelp.UseVisualStyleBackColor = true;
             btnHelp.Click += btnHelp_Click;
-            // 
-            // btnMeow
-            // 
-            btnMeow.BackColor = Color.WhiteSmoke;
-            btnMeow.BackgroundImage = (Image)resources.GetObject("btnMeow.BackgroundImage");
-            btnMeow.BackgroundImageLayout = ImageLayout.Center;
-            btnMeow.Cursor = Cursors.Hand;
-            btnMeow.FlatAppearance.BorderColor = Color.DarkMagenta;
-            btnMeow.FlatAppearance.BorderSize = 2;
-            btnMeow.FlatAppearance.MouseOverBackColor = Color.Thistle;
-            btnMeow.FlatStyle = FlatStyle.Flat;
-            btnMeow.Font = new Font("Calisto MT", 10F);
-            btnMeow.ForeColor = Color.White;
-            btnMeow.Location = new Point(443, 132);
-            btnMeow.Margin = new Padding(0);
-            btnMeow.Name = "btnMeow";
-            btnMeow.Size = new Size(69, 61);
-            btnMeow.TabIndex = 7;
-            btnMeow.UseVisualStyleBackColor = false;
-            btnMeow.Click += btnMeow_Click;
             // 
             // label4
             // 
@@ -263,10 +242,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(515, 208);
+            ClientSize = new Size(500, 208);
             Controls.Add(label4);
             Controls.Add(btnHelp);
-            Controls.Add(btnMeow);
             Controls.Add(btnClear);
             Controls.Add(btnGenerate);
             Controls.Add(numericUpDown1);
@@ -303,7 +281,6 @@
         private Button btnHelp;
         private ToolTip toolTip1;
         private SaveFileDialog saveFileDialog1;
-        private Button btnMeow;
         private Button btnClear;
         private Label label4;
     }

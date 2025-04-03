@@ -5,9 +5,11 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace PasswordManager_WinForms
 {
@@ -22,11 +24,15 @@ namespace PasswordManager_WinForms
         {
             this.Hide();
         }
-
-        private void btnMeow1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Special button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void btnMeow_Click(object sender, EventArgs e)
         {
-            MainForm main = new();
-            main.btnMeow_Click(sender, e);
+            SoundPlayer meow = new SoundPlayer(@"C:\Users\S\Downloads\meooowwww.wav");
+            meow.Play();
         }
 
         private void btnGitHub_Click(object sender, EventArgs e)

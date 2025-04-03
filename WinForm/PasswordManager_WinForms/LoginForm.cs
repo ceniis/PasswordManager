@@ -24,32 +24,37 @@ namespace PasswordManager_WinForms
             try
             {
                 string fileName = "LoginPassword.json"; // password file
+                string password = textBox1.Text;
 
-                if (!File.Exists(fileName))
+                if (File.Exists(fileName))
                 {
-                    MessageBox.Show("Password file not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                    string jsonString = File.ReadAllText(fileName);
+                    var jsonData = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
 
-                string jsonString = File.ReadAllText(fileName);
-                var jsonData = JsonSerializer.Deserialize<Dictionary<string, string>>(jsonString);
+                    if (jsonData == null || !jsonData.ContainsKey("loginPassword"))
+                    {
+                        MessageBox.Show("Invalid password file format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                if (jsonData == null || !jsonData.ContainsKey("loginPassword"))
-                {
-                    MessageBox.Show("Invalid password file format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                string actualPassword = jsonData["loginPassword"];
-
-                // comparing
-                if (textBox1.Text == actualPassword)
-                {
-                    this.DialogResult = DialogResult.OK;
+                    string actualPassword = jsonData["loginPassword"];;
+                    // comparing
+                    if (password == actualPassword)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Incorrect password. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Incorrect password. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Enter new login password.", "Create a password", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var data = new Dictionary<string, string>  { { "loginPassword", $"{password}" } };
+                    string jsonString = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+                    File.WriteAllText(fileName, jsonString);
+                    this.DialogResult = DialogResult.OK;
                 }
             }
             catch (Exception ex)

@@ -1,4 +1,3 @@
-using System.Media;
 using System.Windows.Forms;
 using PasswordManagerDraft;
 
@@ -87,17 +86,6 @@ namespace PasswordManager_WinForms
         private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) btnGenerate_Click(sender, e);
-        }
-
-        /// <summary>
-        /// Special button
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void btnMeow_Click(object sender, EventArgs e)
-        {
-            SoundPlayer meow = new SoundPlayer(@"C:\Users\S\Downloads\meooowwww.wav");
-            meow.Play();
         }
     }
 }
