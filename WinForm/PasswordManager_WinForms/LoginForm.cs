@@ -37,7 +37,7 @@ namespace PasswordManager_WinForms
                         return;
                     }
 
-                    string actualPassword = jsonData["loginPassword"];;
+                    string actualPassword = jsonData["loginPassword"]; ;
                     // comparing
                     if (password == actualPassword)
                     {
@@ -51,7 +51,7 @@ namespace PasswordManager_WinForms
                 else
                 {
                     MessageBox.Show("Enter new login password.", "Create a password", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    var data = new Dictionary<string, string>  { { "loginPassword", $"{password}" } };
+                    var data = new Dictionary<string, string> { { "loginPassword", $"{password}" } };
                     string jsonString = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
                     File.WriteAllText(fileName, jsonString);
                     this.DialogResult = DialogResult.OK;
@@ -77,6 +77,31 @@ namespace PasswordManager_WinForms
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            textBox1.PasswordChar = '\0';
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox1.PasswordChar = '●';
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "Password...")
+            {
+                textBox1.Text = "";
+                textBox1.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            textBox1.Text = "Password...";
+            textBox1.ForeColor = Color.Gray;
         }
     }
 }

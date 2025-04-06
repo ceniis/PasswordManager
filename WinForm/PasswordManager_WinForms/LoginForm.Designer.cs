@@ -35,7 +35,8 @@
             btnConfirm = new Button();
             btnHelp = new Button();
             toolTip1 = new ToolTip(components);
-            button1 = new Button();
+            btnClose = new Button();
+            btnShow = new Button();
             SuspendLayout();
             // 
             // label1
@@ -67,10 +68,13 @@
             textBox1.ForeColor = SystemColors.GrayText;
             textBox1.Location = new Point(6, 101);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(311, 26);
+            textBox1.Size = new Size(279, 26);
             textBox1.TabIndex = 2;
             textBox1.Text = "Password...";
+            textBox1.Enter += textBox1_Enter;
             textBox1.KeyDown += textBox1_KeyDown;
+            textBox1.KeyPress += textBox1_KeyPress;
+            textBox1.Leave += textBox1_Leave;
             // 
             // btnConfirm
             // 
@@ -81,7 +85,7 @@
             btnConfirm.FlatAppearance.MouseOverBackColor = Color.PaleTurquoise;
             btnConfirm.FlatStyle = FlatStyle.Flat;
             btnConfirm.Font = new Font("Corbel", 12F);
-            btnConfirm.Location = new Point(231, 139);
+            btnConfirm.Location = new Point(199, 141);
             btnConfirm.Margin = new Padding(0);
             btnConfirm.Name = "btnConfirm";
             btnConfirm.Size = new Size(86, 39);
@@ -107,22 +111,41 @@
             btnHelp.UseVisualStyleBackColor = true;
             btnHelp.Click += btnHelp_Click;
             // 
-            // button1
+            // btnClose
             // 
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(313, 0);
-            button1.Margin = new Padding(0);
-            button1.Name = "button1";
-            button1.Size = new Size(45, 41);
-            button1.TabIndex = 5;
-            button1.Text = "❌";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnClose.Cursor = Cursors.Hand;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClose.ForeColor = Color.Black;
+            btnClose.Location = new Point(313, 0);
+            btnClose.Margin = new Padding(0);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(45, 41);
+            btnClose.TabIndex = 5;
+            btnClose.Text = "❌";
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += button1_Click;
+            // 
+            // btnShow
+            // 
+            btnShow.BackColor = Color.Gainsboro;
+            btnShow.BackgroundImage = Properties.Resources.icons8_eye_30;
+            btnShow.Cursor = Cursors.Hand;
+            btnShow.FlatAppearance.BorderColor = Color.Navy;
+            btnShow.FlatAppearance.BorderSize = 0;
+            btnShow.FlatAppearance.MouseOverBackColor = Color.LightGray;
+            btnShow.FlatStyle = FlatStyle.Flat;
+            btnShow.Font = new Font("Corbel", 12F);
+            btnShow.ForeColor = Color.Black;
+            btnShow.Location = new Point(288, 101);
+            btnShow.Margin = new Padding(0);
+            btnShow.Name = "btnShow";
+            btnShow.Size = new Size(29, 26);
+            btnShow.TabIndex = 12;
+            btnShow.UseVisualStyleBackColor = false;
+            btnShow.Click += btnShow_Click;
             // 
             // LoginForm
             // 
@@ -130,7 +153,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
             ClientSize = new Size(357, 189);
-            Controls.Add(button1);
+            Controls.Add(btnShow);
+            Controls.Add(btnClose);
             Controls.Add(btnHelp);
             Controls.Add(btnConfirm);
             Controls.Add(textBox1);
@@ -151,6 +175,7 @@
         private Button btnConfirm;
         private Button btnHelp;
         private ToolTip toolTip1;
-        private Button button1;
+        private Button btnClose;
+        private Button btnShow;
     }
 }

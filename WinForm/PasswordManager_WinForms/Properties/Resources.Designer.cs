@@ -63,6 +63,26 @@ namespace PasswordManager_WinForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_copy_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-copy-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_eye_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-eye-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap photo_2024_06_07_20_48_26_288x288 {
             get {
                 object obj = ResourceManager.GetObject("photo_2024-06-07_20-48-26_288x288", resourceCulture);

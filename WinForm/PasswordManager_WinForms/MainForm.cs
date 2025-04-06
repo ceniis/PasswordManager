@@ -1,5 +1,6 @@
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using PasswordManagerDraft;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PasswordManager_WinForms
 {
@@ -12,11 +13,6 @@ namespace PasswordManager_WinForms
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             try
@@ -26,6 +22,7 @@ namespace PasswordManager_WinForms
                 if (checkBox1.Checked) pass.Create(include: true, size);
                 else pass.Create(include: false, size);
                 textBoxPassword.Text = pass.password;
+                textBoxPassword.PasswordChar = '●';
             }
             catch (Exception ex)
             {
@@ -57,6 +54,7 @@ namespace PasswordManager_WinForms
             try
             {
                 textBoxPassword.Text = decr.Decrypt(pass.name);
+                textBoxPassword.PasswordChar = '●';
             }
             catch (Exception ex)
             {
@@ -86,6 +84,57 @@ namespace PasswordManager_WinForms
         private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) btnGenerate_Click(sender, e);
+        }
+
+        private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBoxPassword.PasswordChar = '●';
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            textBoxPassword.PasswordChar = '\0';
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxPassword.Text))
+            {
+                Clipboard.SetText(textBoxPassword.Text);
+            }
+        }
+
+        private void textBoxName_Enter(object sender, EventArgs e)
+        {
+            if (textBoxName.Text == "Meow-meow...")
+            {
+                textBoxName.Text = "";
+                textBoxName.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBoxName_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBoxName.Text))
+            {
+                textBoxName.Text = "Meow-meow...";
+                textBoxName.ForeColor = Color.Gray;
+            }
+        }
+
+        private void textBoxPassword_Enter(object sender, EventArgs e)
+        {
+            if (textBoxName.Text == "123abc...")
+            {
+                textBoxName.Text = "";
+                textBoxName.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBoxPassword_Leave(object sender, EventArgs e)
+        {
+            textBoxName.Text = "123abc...";
+            textBoxName.ForeColor = Color.Gray;
         }
     }
 }
