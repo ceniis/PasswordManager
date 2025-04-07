@@ -118,6 +118,7 @@
             btnInst.Cursor = Cursors.Hand;
             btnInst.FlatAppearance.BorderColor = Color.Gainsboro;
             btnInst.FlatAppearance.BorderSize = 0;
+            btnInst.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
             btnInst.FlatStyle = FlatStyle.Flat;
             btnInst.Font = new Font("Calisto MT", 10F);
             btnInst.ForeColor = Color.Gainsboro;
@@ -137,6 +138,7 @@
             btnGitHub.Cursor = Cursors.Hand;
             btnGitHub.FlatAppearance.BorderColor = Color.Gainsboro;
             btnGitHub.FlatAppearance.BorderSize = 0;
+            btnGitHub.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
             btnGitHub.FlatStyle = FlatStyle.Flat;
             btnGitHub.Font = new Font("Calisto MT", 10F);
             btnGitHub.ForeColor = Color.WhiteSmoke;
@@ -175,6 +177,7 @@
             Name = "About";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "About";
+            Load += About_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

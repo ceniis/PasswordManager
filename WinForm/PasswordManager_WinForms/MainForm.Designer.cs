@@ -42,7 +42,6 @@
             label3 = new Label();
             btnHelp = new Button();
             toolTip1 = new ToolTip(components);
-            saveFileDialog1 = new SaveFileDialog();
             label4 = new Label();
             btnShow = new Button();
             btnCopy = new Button();
@@ -81,6 +80,7 @@
             textBoxName.Text = "Meow-meow...";
             textBoxName.Enter += textBoxName_Enter;
             textBoxName.KeyDown += textBoxName_KeyDown;
+            textBoxName.KeyPress += textBoxName_KeyPress;
             textBoxName.Leave += textBoxName_Leave;
             // 
             // label1
@@ -308,7 +308,9 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Password Manager";
+            Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -328,7 +330,6 @@
         private Label label3;
         private Button btnHelp;
         private ToolTip toolTip1;
-        private SaveFileDialog saveFileDialog1;
         private Button btnClear;
         private Label label4;
         private Button btnShow;

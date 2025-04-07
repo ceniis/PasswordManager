@@ -48,13 +48,26 @@ namespace PasswordManager_WinForms
                         MessageBox.Show("Incorrect password. Try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                else
+                else // if file doesn't exist
                 {
-                    MessageBox.Show("Enter new login password.", "Create a password", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    var data = new Dictionary<string, string> { { "loginPassword", $"{password}" } };
-                    string jsonString = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
-                    File.WriteAllText(fileName, jsonString);
-                    this.DialogResult = DialogResult.OK;
+                    DialogResult result = MessageBox.Show(
+                        "Keep current password as an entry password?",
+                        "Create a password",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+                    if (result == DialogResult.Yes)
+                    {
+                        var data = new Dictionary<string, string> { { "loginPassword", $"{password}" } };
+                        string jsonString = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
+                        File.WriteAllText(fileName, jsonString);
+                        this.DialogResult = DialogResult.OK;
+                        MessageBox.Show("Password is written successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        textBox1.Focus();
+                    }
                 }
             }
             catch (Exception ex)
@@ -100,8 +113,19 @@ namespace PasswordManager_WinForms
 
         private void textBox1_Leave(object sender, EventArgs e)
         {
-            textBox1.Text = "Password...";
-            textBox1.ForeColor = Color.Gray;
+            if (textBox1.Text == string.Empty)
+            {
+                textBox1.Text = "Password...";
+                textBox1.ForeColor = Color.Gray;
+            }
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            // toolTips settings
+            toolTip1.SetToolTip(btnShow, "Show the password");
+            toolTip1.SetToolTip(btnHelp, "Information");
+            toolTip1.SetToolTip(btnConfirm, "Confirm");
         }
     }
 }

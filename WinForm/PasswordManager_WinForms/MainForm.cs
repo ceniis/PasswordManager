@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using PasswordManagerDraft;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -135,6 +136,24 @@ namespace PasswordManager_WinForms
         {
             textBoxName.Text = "123abc...";
             textBoxName.ForeColor = Color.Gray;
+        }
+
+        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBoxName.Text = "";
+            textBoxPassword.Text = "";
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // tips settings
+            toolTip1.SetToolTip(btnSearch, "Find the password among the saved ones");
+            toolTip1.SetToolTip(btnSave, "Save an encrypted password");
+            toolTip1.SetToolTip(btnGenerate, "Generate a password");
+            toolTip1.SetToolTip(btnClear, "Clear the fields");
+            toolTip1.SetToolTip(btnCopy, "Copy a password to the Clipboard");
+            toolTip1.SetToolTip(btnShow, "Show the password");
+            toolTip1.SetToolTip(btnHelp, "Information");
         }
     }
 }

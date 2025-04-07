@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Reflection;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 
 namespace PasswordManager_WinForms
 {
@@ -31,20 +33,44 @@ namespace PasswordManager_WinForms
         /// <param name="e"></param>
         public void btnMeow_Click(object sender, EventArgs e)
         {
-            SoundPlayer meow = new SoundPlayer(@"C:\Users\S\Downloads\meooowwww.wav");
-            meow.Play();
+            try
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                string resourceName = "PasswordManager_WinForms.Resources.meooowwww.wav";
+                Stream soundStream = assembly.GetManifestResourceStream(resourceName);
+                if (soundStream != null)
+                {
+                    SoundPlayer meow = new SoundPlayer(soundStream);
+                    meow.Play();
+                }
+                else
+                {
+                    Exception ex = new();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error playing the sound: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnGitHub_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo profile = new ProcessStartInfo("https://github.com/ceniis");
-            Process.Start(profile);
+            Process.Start(new ProcessStartInfo("https://github.com/ceniis") { UseShellExecute = true });
         }
 
         private void btnInst_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo profile = new ProcessStartInfo("https://www.instagram.com/s_au_sa_ge/");
-            Process.Start(profile);
+            Process.Start(new ProcessStartInfo("https://www.instagram.com/s_au_sa_ge/") { UseShellExecute = true });
+        }
+
+        private void About_Load(object sender, EventArgs e)
+        {
+            // toolTips settings
+            toolTip1.SetToolTip(btnBack, "Back");
+            toolTip1.SetToolTip(btnGitHub, "See GitHub");
+            toolTip1.SetToolTip(btnInst, "See Instagram");
+            toolTip1.SetToolTip(btnMeow, "Meow-meow");
         }
     }
 }
