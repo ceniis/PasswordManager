@@ -7,7 +7,7 @@ namespace PasswordManager_WinForms
 {
     public partial class MainForm : Form
     {
-        Password pass = new();
+        Password pass = new(); // password
 
         public MainForm()
         {
@@ -77,6 +77,20 @@ namespace PasswordManager_WinForms
             form.btnHelp_Click(sender, e);
         }
 
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            textBoxPassword.PasswordChar = '\0';
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxPassword.Text))
+            {
+                Clipboard.SetText(textBoxPassword.Text);
+                MessageBox.Show("Success!", "Copied to the clipboard", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void textBoxName_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) textBoxPassword.Focus();
@@ -90,19 +104,6 @@ namespace PasswordManager_WinForms
         private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             textBoxPassword.PasswordChar = '●';
-        }
-
-        private void btnShow_Click(object sender, EventArgs e)
-        {
-            textBoxPassword.PasswordChar = '\0';
-        }
-
-        private void btnCopy_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(textBoxPassword.Text))
-            {
-                Clipboard.SetText(textBoxPassword.Text);
-            }
         }
 
         private void textBoxName_Enter(object sender, EventArgs e)
@@ -138,12 +139,6 @@ namespace PasswordManager_WinForms
             textBoxName.ForeColor = Color.Gray;
         }
 
-        private void textBoxName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            textBoxName.Text = "";
-            textBoxPassword.Text = "";
-        }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             // tips settings
@@ -154,6 +149,13 @@ namespace PasswordManager_WinForms
             toolTip1.SetToolTip(btnCopy, "Copy a password to the Clipboard");
             toolTip1.SetToolTip(btnShow, "Show the password");
             toolTip1.SetToolTip(btnHelp, "Information");
+            toolTip1.SetToolTip(btnViewAll, "Show all saved passwords");
+            toolTip1.SetToolTip(labelCount, "How many passwords is saved");
+        }
+
+        private void btnViewAll_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

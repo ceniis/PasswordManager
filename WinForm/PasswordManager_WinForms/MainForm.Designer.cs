@@ -45,7 +45,11 @@
             label4 = new Label();
             btnShow = new Button();
             btnCopy = new Button();
+            btnViewAll = new Button();
+            labelCount = new Label();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btnGenerate
@@ -58,10 +62,10 @@
             btnGenerate.FlatStyle = FlatStyle.Flat;
             btnGenerate.Font = new Font("Corbel", 12F);
             btnGenerate.ForeColor = Color.Black;
-            btnGenerate.Location = new Point(275, 156);
+            btnGenerate.Location = new Point(343, 118);
             btnGenerate.Margin = new Padding(0);
             btnGenerate.Name = "btnGenerate";
-            btnGenerate.Size = new Size(107, 36);
+            btnGenerate.Size = new Size(94, 27);
             btnGenerate.TabIndex = 0;
             btnGenerate.Text = "Generate";
             btnGenerate.UseVisualStyleBackColor = false;
@@ -72,15 +76,13 @@
             textBoxName.Cursor = Cursors.IBeam;
             textBoxName.Font = new Font("Corbel Light", 9F);
             textBoxName.ForeColor = SystemColors.WindowFrame;
-            textBoxName.Location = new Point(11, 41);
-            textBoxName.Margin = new Padding(3, 4, 3, 4);
+            textBoxName.Location = new Point(10, 31);
             textBoxName.Name = "textBoxName";
-            textBoxName.Size = new Size(264, 26);
+            textBoxName.Size = new Size(232, 22);
             textBoxName.TabIndex = 1;
             textBoxName.Text = "Meow-meow...";
             textBoxName.Enter += textBoxName_Enter;
             textBoxName.KeyDown += textBoxName_KeyDown;
-            textBoxName.KeyPress += textBoxName_KeyPress;
             textBoxName.Leave += textBoxName_Leave;
             // 
             // label1
@@ -88,9 +90,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Corbel", 12F);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(11, 12);
+            label1.Location = new Point(10, 9);
             label1.Name = "label1";
-            label1.Size = new Size(209, 24);
+            label1.Size = new Size(164, 19);
             label1.TabIndex = 2;
             label1.Text = "Enter password's name:";
             // 
@@ -104,10 +106,10 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSearch.ForeColor = Color.Black;
-            btnSearch.Location = new Point(11, 156);
+            btnSearch.Location = new Point(343, 155);
             btnSearch.Margin = new Padding(0);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(107, 36);
+            btnSearch.Size = new Size(94, 27);
             btnSearch.TabIndex = 3;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
@@ -123,10 +125,10 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Corbel", 12F);
             btnSave.ForeColor = Color.Black;
-            btnSave.Location = new Point(145, 156);
+            btnSave.Location = new Point(343, 192);
             btnSave.Margin = new Padding(0);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(107, 36);
+            btnSave.Size = new Size(94, 27);
             btnSave.TabIndex = 4;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -142,10 +144,10 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Corbel", 12F);
             btnClear.ForeColor = Color.Black;
-            btnClear.Location = new Point(409, 156);
+            btnClear.Location = new Point(343, 83);
             btnClear.Margin = new Padding(0);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(107, 36);
+            btnClear.Size = new Size(94, 27);
             btnClear.TabIndex = 9;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
@@ -153,12 +155,12 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(470, 73);
+            numericUpDown1.Location = new Point(397, 55);
             numericUpDown1.Margin = new Padding(2);
             numericUpDown1.Maximum = new decimal(new int[] { 128, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 12, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(46, 27);
+            numericUpDown1.Size = new Size(40, 23);
             numericUpDown1.TabIndex = 6;
             numericUpDown1.Value = new decimal(new int[] { 12, 0, 0, 0 });
             // 
@@ -167,9 +169,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Corbel", 9.5F);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(309, 76);
+            label2.Location = new Point(270, 57);
             label2.Name = "label2";
-            label2.Size = new Size(156, 19);
+            label2.Size = new Size(126, 15);
             label2.TabIndex = 6;
             label2.Text = "Number of characters:";
             // 
@@ -181,10 +183,9 @@
             checkBox1.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
             checkBox1.Font = new Font("Corbel", 9.5F);
             checkBox1.ForeColor = Color.Black;
-            checkBox1.Location = new Point(309, 44);
-            checkBox1.Margin = new Padding(3, 4, 3, 4);
+            checkBox1.Location = new Point(270, 33);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(166, 23);
+            checkBox1.Size = new Size(134, 19);
             checkBox1.TabIndex = 1;
             checkBox1.Text = "Add special symbols";
             checkBox1.UseVisualStyleBackColor = true;
@@ -194,10 +195,9 @@
             textBoxPassword.Cursor = Cursors.IBeam;
             textBoxPassword.Font = new Font("Corbel Light", 9F);
             textBoxPassword.ForeColor = SystemColors.WindowFrame;
-            textBoxPassword.Location = new Point(11, 109);
-            textBoxPassword.Margin = new Padding(3, 4, 3, 4);
+            textBoxPassword.Location = new Point(10, 82);
             textBoxPassword.Name = "textBoxPassword";
-            textBoxPassword.Size = new Size(232, 26);
+            textBoxPassword.Size = new Size(204, 22);
             textBoxPassword.TabIndex = 6;
             textBoxPassword.Text = "123abc...";
             textBoxPassword.Enter += textBoxPassword_Enter;
@@ -210,9 +210,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Corbel", 12F);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(11, 80);
+            label3.Location = new Point(10, 60);
             label3.Name = "label3";
-            label3.Size = new Size(95, 24);
+            label3.Size = new Size(76, 19);
             label3.TabIndex = 7;
             label3.Text = "Password:";
             // 
@@ -224,10 +224,10 @@
             btnHelp.FlatStyle = FlatStyle.Flat;
             btnHelp.Font = new Font("Segoe UI", 14F);
             btnHelp.ForeColor = Color.Navy;
-            btnHelp.Location = new Point(508, -9);
+            btnHelp.Location = new Point(415, -1);
             btnHelp.Margin = new Padding(0);
             btnHelp.Name = "btnHelp";
-            btnHelp.Size = new Size(25, 45);
+            btnHelp.Size = new Size(22, 34);
             btnHelp.TabIndex = 8;
             btnHelp.Text = "❔";
             btnHelp.UseVisualStyleBackColor = true;
@@ -238,9 +238,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Corbel", 10F);
             label4.ForeColor = Color.MidnightBlue;
-            label4.Location = new Point(309, 15);
+            label4.Location = new Point(270, 11);
             label4.Name = "label4";
-            label4.Size = new Size(141, 21);
+            label4.Size = new Size(118, 17);
             label4.TabIndex = 10;
             label4.Text = "Password settings:";
             // 
@@ -255,10 +255,10 @@
             btnShow.FlatStyle = FlatStyle.Flat;
             btnShow.Font = new Font("Corbel", 12F);
             btnShow.ForeColor = Color.Black;
-            btnShow.Location = new Point(246, 109);
+            btnShow.Location = new Point(215, 82);
             btnShow.Margin = new Padding(0);
             btnShow.Name = "btnShow";
-            btnShow.Size = new Size(29, 26);
+            btnShow.Size = new Size(28, 28);
             btnShow.TabIndex = 11;
             btnShow.UseVisualStyleBackColor = false;
             btnShow.Click += btnShow_Click;
@@ -274,20 +274,61 @@
             btnCopy.FlatStyle = FlatStyle.Flat;
             btnCopy.Font = new Font("Corbel", 12F);
             btnCopy.ForeColor = Color.Black;
-            btnCopy.Location = new Point(275, 109);
+            btnCopy.Location = new Point(243, 82);
             btnCopy.Margin = new Padding(0);
             btnCopy.Name = "btnCopy";
-            btnCopy.Size = new Size(29, 26);
+            btnCopy.Size = new Size(28, 28);
             btnCopy.TabIndex = 12;
             btnCopy.UseVisualStyleBackColor = false;
             btnCopy.Click += btnCopy_Click;
             // 
+            // btnViewAll
+            // 
+            btnViewAll.BackColor = Color.WhiteSmoke;
+            btnViewAll.Cursor = Cursors.Hand;
+            btnViewAll.FlatAppearance.BorderColor = Color.Navy;
+            btnViewAll.FlatAppearance.BorderSize = 2;
+            btnViewAll.FlatAppearance.MouseOverBackColor = Color.PaleTurquoise;
+            btnViewAll.FlatStyle = FlatStyle.Flat;
+            btnViewAll.Font = new Font("Corbel", 12F);
+            btnViewAll.ForeColor = Color.Black;
+            btnViewAll.Location = new Point(343, 245);
+            btnViewAll.Margin = new Padding(0, 16, 0, 0);
+            btnViewAll.Name = "btnViewAll";
+            btnViewAll.Size = new Size(94, 27);
+            btnViewAll.TabIndex = 13;
+            btnViewAll.Text = "View all";
+            btnViewAll.UseVisualStyleBackColor = false;
+            btnViewAll.Click += btnViewAll_Click;
+            // 
+            // labelCount
+            // 
+            labelCount.AutoSize = true;
+            labelCount.Font = new Font("Corbel", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            labelCount.ForeColor = Color.MidnightBlue;
+            labelCount.Location = new Point(10, 118);
+            labelCount.Name = "labelCount";
+            labelCount.Size = new Size(172, 19);
+            labelCount.TabIndex = 14;
+            labelCount.Text = "There's 0 passwords saved";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(10, 140);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(319, 132);
+            dataGridView1.TabIndex = 15;
+            // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(532, 211);
+            ClientSize = new Size(446, 284);
+            Controls.Add(dataGridView1);
+            Controls.Add(labelCount);
+            Controls.Add(btnViewAll);
             Controls.Add(btnCopy);
             Controls.Add(btnShow);
             Controls.Add(label4);
@@ -304,7 +345,7 @@
             Controls.Add(label1);
             Controls.Add(textBoxName);
             ForeColor = Color.Gainsboro;
-            Margin = new Padding(3, 4, 3, 4);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";
@@ -312,6 +353,7 @@
             Text = "Password Manager";
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -334,5 +376,8 @@
         private Label label4;
         private Button btnShow;
         private Button btnCopy;
+        private Button btnViewAll;
+        private Label labelCount;
+        private DataGridView dataGridView1;
     }
 }
