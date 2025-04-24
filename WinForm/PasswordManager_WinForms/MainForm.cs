@@ -8,6 +8,7 @@ namespace PasswordManager_WinForms
     public partial class MainForm : Form
     {
         Password pass = new(); // password
+        FileManager fileManager = new();
 
         public MainForm()
         {
@@ -34,12 +35,11 @@ namespace PasswordManager_WinForms
         private void btnSave_Click(object sender, EventArgs e)
         {
             MyEncryption encr = new();
-            pass.name = textBoxName.Text;
-            pass.password = textBoxPassword.Text;
 
             try
             {
-                encr.Encrypt(pass.name, pass.password);
+                fileManager.SaveToFile(textBoxName.Text, encr.Encrypt(textBoxPassword.Text));
+                MessageBox.Show("Saved successfully\nP.S. if password with the same name has already exist, it was rewritten", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -50,11 +50,9 @@ namespace PasswordManager_WinForms
         private void btnSearch_Click(object sender, EventArgs e)
         {
             MyEncryption decr = new();
-            pass.name = textBoxName.Text;
-
             try
             {
-                textBoxPassword.Text = decr.Decrypt(pass.name);
+                textBoxPassword.Text = decr.Decrypt(fileManager.FindEncryptedPassword(textBoxName.Text));
                 textBoxPassword.PasswordChar = '●';
             }
             catch (Exception ex)
@@ -87,7 +85,7 @@ namespace PasswordManager_WinForms
             if (!string.IsNullOrEmpty(textBoxPassword.Text))
             {
                 Clipboard.SetText(textBoxPassword.Text);
-                MessageBox.Show("Success!", "Copied to the clipboard", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Copied to the clipboard", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

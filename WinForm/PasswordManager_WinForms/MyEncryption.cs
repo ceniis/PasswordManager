@@ -12,7 +12,6 @@ namespace PasswordManagerDraft
     public class MyEncryption
     {
         private readonly byte[] key; // Symmetric encryption key
-        private const string DataFile = "Data.txt"; // File storing passwords
 
         /// <summary>
         /// Constructor: Loads or creates an encryption key
@@ -66,9 +65,9 @@ namespace PasswordManagerDraft
         }
 
         /// <summary>
-        /// Encrypts the password and writes it to Data.txt
+        /// Encrypts the password
         /// </summary>
-        public void Encrypt(string passwordName, string password)
+        public string Encrypt(string password)
         {
             try
             {
@@ -79,17 +78,14 @@ namespace PasswordManagerDraft
                 aes.GenerateIV();
 
                 using MemoryStream memoryStream = new();
-                using CryptoStream cryptoStream = new(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write);
-                using StreamWriter cryptoWriter = new(cryptoStream);
-
-                cryptoWriter.Write(password);
-                cryptoWriter.Flush();
-                cryptoStream.FlushFinalBlock(); // Ensure encryption is fully written
+                using (CryptoStream cryptoStream = new(memoryStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                using (StreamWriter writer = new(cryptoStream))
+                {
+                    writer.Write(password);
+                }
 
                 byte[] encryptedData = memoryStream.ToArray();
-                string encodedPassword = Convert.ToBase64String(aes.IV) + ":" + Convert.ToBase64String(encryptedData);
-
-                UpdatePasswordFile(passwordName, encodedPassword);
+                return $"{Convert.ToBase64String(aes.IV)}:{Convert.ToBase64String(encryptedData)}";
             }
             catch (Exception ex)
             {
@@ -98,21 +94,18 @@ namespace PasswordManagerDraft
         }
 
         /// <summary>
-        /// Decrypts a password from Data.txt
+        /// Decrypts a password
         /// </summary>
-        public string? Decrypt(string passwordName)
+        public string? Decrypt(string encryptedPassword)
         {
             try
             {
-                string? encryptedEntry = FindEncryptedPassword(passwordName);
-                if (encryptedEntry == null) return null;
-
-                string[] parts = encryptedEntry.Split(':');
-                if (parts.Length != 2) throw new Exception("Invalid data format.");
+                string[] parts = encryptedPassword.Split(':');
+                if (parts.Length != 2)
+                    throw new FormatException("Invalid encrypted password format.");
 
                 byte[] iv = Convert.FromBase64String(parts[0]);
                 byte[] encryptedData = Convert.FromBase64String(parts[1]);
-
                 using Aes aes = Aes.Create();
                 if (aes == null) throw new Exception("Error creating AES object.");
 
@@ -127,65 +120,6 @@ namespace PasswordManagerDraft
             catch (Exception ex)
             {
                 throw new ApplicationException("Decoding error.", ex);
-            }
-        }
-
-        /// <summary>
-        /// Searches for the encrypted password
-        /// </summary>
-        private string? FindEncryptedPassword(string passwordName)
-        {
-            if (!File.Exists(DataFile)) return null;
-
-            string searchPrefix = passwordName + ":";
-
-            try
-            {
-                foreach (string line in File.ReadLines(DataFile)) // More efficient than ReadAllLines()
-                {
-                    if (line.StartsWith(searchPrefix))
-                        return line.Substring(searchPrefix.Length);
-                }
-            }
-            catch (IOException ex)
-            {
-                throw new ApplicationException("Error reading password file.", ex);
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Updates or adds the password in Data.txt
-        /// </summary>
-        private void UpdatePasswordFile(string passwordName, string encodedPassword)
-        {
-            if (!File.Exists(DataFile))
-            {
-                File.WriteAllText(DataFile, passwordName + ":" + encodedPassword + Environment.NewLine);
-                return;
-            }
-
-            string[] lines = File.ReadAllLines(DataFile);
-            bool updated = false;
-
-            for (int i = 0; i < lines.Length; i++)
-            {
-                if (lines[i].StartsWith(passwordName + ":"))
-                {
-                    lines[i] = passwordName + ":" + encodedPassword;
-                    updated = true;
-                    break;
-                }
-            }
-
-            if (!updated)
-            {
-                File.AppendAllText(DataFile, passwordName + ":" + encodedPassword + Environment.NewLine);
-            }
-            else
-            {
-                File.WriteAllLines(DataFile, lines);
             }
         }
     }
