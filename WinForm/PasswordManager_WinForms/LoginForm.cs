@@ -23,7 +23,7 @@ namespace PasswordManager_WinForms
         {
             try
             {
-                string fileName = "LoginPassword.json"; // password file
+                string fileName = FilePaths.LoginPasswordFile; // password file
                 string password = textBox1.Text;
 
                 if (File.Exists(fileName))

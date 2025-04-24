@@ -310,7 +310,8 @@
             labelCount.Name = "labelCount";
             labelCount.Size = new Size(172, 19);
             labelCount.TabIndex = 14;
-            labelCount.Text = "There's 0 passwords saved";
+            labelCount.Text = "There's 0 saved passwords";
+            labelCount.Click += labelCount_Click;
             // 
             // dataGridView1
             // 

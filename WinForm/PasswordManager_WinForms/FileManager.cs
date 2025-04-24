@@ -12,7 +12,7 @@ namespace PasswordManager_WinForms
 {
     public class FileManager
     {
-        private const string DataFile = "Data.json"; // File storing passwords
+        private static readonly string DataFile = FilePaths.DataFile; // file directory
 
         public class Data
         {
@@ -27,6 +27,7 @@ namespace PasswordManager_WinForms
         /// <param name="password"></param>
         public void SaveToFile(string passwordName, string password)
         {
+            Directory.CreateDirectory(Path.GetDirectoryName(DataFile)!); // if the directory exist
             List<Data> entries = new();
 
             if (File.Exists(DataFile))
@@ -87,6 +88,20 @@ namespace PasswordManager_WinForms
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Count orders
+        /// </summary>
+        /// <returns></returns>
+
+        public static int Counter()
+        {
+            if (!File.Exists(FilePaths.DataFile)) return 0;
+
+            string json = File.ReadAllText(FilePaths.DataFile);
+            var data = JsonConvert.DeserializeObject<List<Data>>(json);
+            return data?.Count ?? 0;
         }
 
     }

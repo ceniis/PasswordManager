@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordManager_WinForms;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -12,13 +13,13 @@ namespace PasswordManagerDraft
     public class MyEncryption
     {
         private readonly byte[] key; // Symmetric encryption key
+        string keyFilePath = FilePaths.KeyFile;
 
         /// <summary>
         /// Constructor: Loads or creates an encryption key
         /// </summary>
         public MyEncryption()
         {
-            string keyFilePath = "Key.bin";
             key = File.Exists(keyFilePath) ? LoadKey() : KeyCreator();
 
             if (key.Length != 32)
@@ -30,7 +31,7 @@ namespace PasswordManagerDraft
         /// </summary>
         private static byte[] KeyCreator()
         {
-            string keyFilePath = "Key.bin";
+            string keyFilePath = FilePaths.KeyFile;
             byte[] key = new byte[32]; // 256-bit AES key
 
             using (var rng = RandomNumberGenerator.Create())
@@ -56,7 +57,7 @@ namespace PasswordManagerDraft
         /// </summary>
         private static byte[] LoadKey()
         {
-            string keyFilePath = "Key.bin";
+            string keyFilePath = FilePaths.KeyFile;
 
             if (!File.Exists(keyFilePath))
                 throw new FileNotFoundException("Error finding key's file.");

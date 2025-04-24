@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics.Metrics;
+using System.Drawing;
 using System.Windows.Forms;
 using PasswordManagerDraft;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -39,6 +40,7 @@ namespace PasswordManager_WinForms
             try
             {
                 fileManager.SaveToFile(textBoxName.Text, encr.Encrypt(textBoxPassword.Text));
+                labelCount_Click(sender, e);
                 MessageBox.Show("Saved successfully\nP.S. if password with the same name has already exist, it was rewritten", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -139,6 +141,7 @@ namespace PasswordManager_WinForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            labelCount_Click(sender, e);
             // tips settings
             toolTip1.SetToolTip(btnSearch, "Find the password among the saved ones");
             toolTip1.SetToolTip(btnSave, "Save an encrypted password");
@@ -153,7 +156,13 @@ namespace PasswordManager_WinForms
 
         private void btnViewAll_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void labelCount_Click(object sender, EventArgs e)
+        {
+            if (FileManager.Counter() != 0 && FileManager.Counter() != 1) labelCount.Text = $"There're {FileManager.Counter().ToString()} saved passwords";
+            else labelCount.Text = $"There's {FileManager.Counter().ToString()} saved passwords";
         }
     }
 }
