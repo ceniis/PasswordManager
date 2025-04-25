@@ -23,8 +23,6 @@ namespace PasswordManager_WinForms
         /// <summary>
         /// Compare or create hashed login passwords
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             try

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             btnGenerate = new Button();
             textBoxName = new TextBox();
             label1 = new Label();
@@ -62,7 +63,7 @@
             btnGenerate.FlatStyle = FlatStyle.Flat;
             btnGenerate.Font = new Font("Corbel", 12F);
             btnGenerate.ForeColor = Color.Black;
-            btnGenerate.Location = new Point(392, 157);
+            btnGenerate.Location = new Point(408, 155);
             btnGenerate.Margin = new Padding(0);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(107, 36);
@@ -107,7 +108,7 @@
             btnSearch.FlatStyle = FlatStyle.Flat;
             btnSearch.Font = new Font("Corbel", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSearch.ForeColor = Color.Black;
-            btnSearch.Location = new Point(392, 207);
+            btnSearch.Location = new Point(408, 205);
             btnSearch.Margin = new Padding(0);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(107, 36);
@@ -126,7 +127,7 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Corbel", 12F);
             btnSave.ForeColor = Color.Black;
-            btnSave.Location = new Point(392, 256);
+            btnSave.Location = new Point(408, 254);
             btnSave.Margin = new Padding(0);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(107, 36);
@@ -145,7 +146,7 @@
             btnClear.FlatStyle = FlatStyle.Flat;
             btnClear.Font = new Font("Corbel", 12F);
             btnClear.ForeColor = Color.Black;
-            btnClear.Location = new Point(392, 111);
+            btnClear.Location = new Point(408, 109);
             btnClear.Margin = new Padding(0);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(107, 36);
@@ -156,7 +157,7 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(454, 73);
+            numericUpDown1.Location = new Point(470, 73);
             numericUpDown1.Margin = new Padding(2, 3, 2, 3);
             numericUpDown1.Maximum = new decimal(new int[] { 128, 0, 0, 0 });
             numericUpDown1.Minimum = new decimal(new int[] { 12, 0, 0, 0 });
@@ -227,7 +228,7 @@
             btnHelp.FlatStyle = FlatStyle.Flat;
             btnHelp.Font = new Font("Segoe UI", 14F);
             btnHelp.ForeColor = Color.Navy;
-            btnHelp.Location = new Point(474, -1);
+            btnHelp.Location = new Point(491, -1);
             btnHelp.Margin = new Padding(0);
             btnHelp.Name = "btnHelp";
             btnHelp.Size = new Size(25, 45);
@@ -295,7 +296,7 @@
             btnViewAll.FlatStyle = FlatStyle.Flat;
             btnViewAll.Font = new Font("Corbel", 12F);
             btnViewAll.ForeColor = Color.Black;
-            btnViewAll.Location = new Point(392, 327);
+            btnViewAll.Location = new Point(408, 325);
             btnViewAll.Margin = new Padding(0, 21, 0, 0);
             btnViewAll.Name = "btnViewAll";
             btnViewAll.Size = new Size(107, 36);
@@ -323,7 +324,7 @@
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(365, 176);
+            dataGridView1.Size = new Size(379, 176);
             dataGridView1.TabIndex = 15;
             // 
             // MainForm
@@ -331,7 +332,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(510, 379);
+            ClientSize = new Size(524, 375);
             Controls.Add(dataGridView1);
             Controls.Add(labelCount);
             Controls.Add(btnViewAll);
@@ -352,6 +353,7 @@
             Controls.Add(textBoxName);
             ForeColor = Color.Gainsboro;
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
