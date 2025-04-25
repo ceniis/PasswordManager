@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 
 namespace PasswordManager_WinForms
 {
@@ -19,12 +20,25 @@ namespace PasswordManager_WinForms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Compare or create hashed login passwords
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             try
             {
-                string fileName = FilePaths.LoginPasswordFile; // password file
-                string password = textBox1.Text;
+                string fileName = FilePaths.LoginPasswordFile; // file
+                string password = textBox1.Text; // login password
+
+                // hash the input
+                string hashString;
+                using (SHA256 sha = SHA256.Create())
+                {
+                    byte[] tmpHash = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
+                    hashString = Convert.ToBase64String(tmpHash);
+                }
 
                 if (File.Exists(fileName))
                 {
@@ -37,9 +51,10 @@ namespace PasswordManager_WinForms
                         return;
                     }
 
-                    string actualPassword = jsonData["loginPassword"]; ;
-                    // comparing
-                    if (password == actualPassword)
+                    string storedHash = jsonData["loginPassword"];
+
+                    // compare the hash
+                    if (storedHash == hashString)
                     {
                         this.DialogResult = DialogResult.OK;
                     }
@@ -56,13 +71,15 @@ namespace PasswordManager_WinForms
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question
                     );
+
                     if (result == DialogResult.Yes)
                     {
-                        var data = new Dictionary<string, string> { { "loginPassword", $"{password}" } };
+                        var data = new Dictionary<string, string> { { "loginPassword", hashString } };
                         string jsonString = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
                         File.WriteAllText(fileName, jsonString);
+
                         this.DialogResult = DialogResult.OK;
-                        MessageBox.Show("Password is written successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Password is written successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
