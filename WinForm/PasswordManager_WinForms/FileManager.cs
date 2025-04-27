@@ -21,7 +21,7 @@ namespace PasswordManager_WinForms
         }
 
         /// <summary>
-        /// Save to Data.json file a new order
+        /// Save to Data.json file a new record
         /// </summary>
         /// <param name="passwordName"></param>
         /// <param name="password"></param>
@@ -91,10 +91,27 @@ namespace PasswordManager_WinForms
         }
 
         /// <summary>
-        /// Count orders
+        /// Return all records
         /// </summary>
-        /// <returns></returns>
+        public List<Data>? AllEncryptedPasswords()
+        {
+            if (!File.Exists(DataFile)) return null;
 
+            try
+            {
+                string json = File.ReadAllText(DataFile);
+                return JsonConvert.DeserializeObject<List<Data>>(json);
+            }
+            catch (IOException ex)
+            {
+                throw new ApplicationException("Error reading password file.", ex);
+            }
+        }
+
+        /// <summary>
+        /// Count records
+        /// </summary>
+        /// <returns>Amount of records in the file</returns>
         public static int Counter()
         {
             if (!File.Exists(FilePaths.DataFile)) return 0;
@@ -103,6 +120,5 @@ namespace PasswordManager_WinForms
             var data = JsonConvert.DeserializeObject<List<Data>>(json);
             return data?.Count ?? 0;
         }
-
     }
 }

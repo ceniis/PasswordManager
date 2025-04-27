@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 using PasswordManagerDraft;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -68,6 +69,7 @@ namespace PasswordManager_WinForms
             textBoxName.Text = "";
             textBoxPassword.Text = "";
             numericUpDown1.Value = 12;
+            dataGridView1.Rows.Clear();
             checkBox1.Checked = true;
         }
 
@@ -79,7 +81,7 @@ namespace PasswordManager_WinForms
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            textBoxPassword.PasswordChar = '\0';
+            textBoxPassword.PasswordChar = textBoxPassword.PasswordChar == '\0' ? '●' : '\0';
         }
 
         private void btnCopy_Click(object sender, EventArgs e)
@@ -142,13 +144,23 @@ namespace PasswordManager_WinForms
         private void MainForm_Load(object sender, EventArgs e)
         {
             labelCount_Click(sender, e);
+
+            // tablet settings
+            dataGridView1.Columns.Add("colName", "Name");
+            dataGridView1.Columns.Add("colPassword", "Password");
+            dataGridView1.Columns[0].Width = 100;
+            dataGridView1.Columns[1].Width = 280;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.MediumBlue;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Corbel", 12, FontStyle.Regular);
+            dataGridView1.ReadOnly = true;
+
             // tips settings
             toolTip1.SetToolTip(btnSearch, "Find the password among the saved ones");
             toolTip1.SetToolTip(btnSave, "Save an encrypted password");
             toolTip1.SetToolTip(btnGenerate, "Generate a password");
             toolTip1.SetToolTip(btnClear, "Clear the fields");
             toolTip1.SetToolTip(btnCopy, "Copy a password to the Clipboard");
-            toolTip1.SetToolTip(btnShow, "Show the password");
+            toolTip1.SetToolTip(btnShow, "Show passwords");
             toolTip1.SetToolTip(btnHelp, "Information");
             toolTip1.SetToolTip(btnViewAll, "Show all saved passwords");
             toolTip1.SetToolTip(labelCount, "How many passwords is saved");
@@ -156,13 +168,65 @@ namespace PasswordManager_WinForms
 
         private void btnViewAll_Click(object sender, EventArgs e)
         {
+            MyEncryption decr = new();
+            dataGridView1.Rows.Clear();
 
+            try
+            {
+                var entries = fileManager.AllEncryptedPasswords();
+
+                if (entries != null)
+                {
+                    foreach (var entry in entries)
+                    {
+                        DataGridViewRow row = new DataGridViewRow();
+                        row.CreateCells(dataGridView1, entry.name, "●●●●●●●●●●●●●●");
+                        row.DefaultCellStyle.ForeColor = Color.MidnightBlue;
+                        row.DefaultCellStyle.Font = new Font("Corbel", 12, FontStyle.Regular);
+                        dataGridView1.Rows.Add(row);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void labelCount_Click(object sender, EventArgs e)
         {
             if (FileManager.Counter() != 0 && FileManager.Counter() != 1) labelCount.Text = $"There're {FileManager.Counter().ToString()} saved passwords";
             else labelCount.Text = $"There's {FileManager.Counter().ToString()} saved passwords";
+        }
+
+        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = (Char)Keys.None;
+        }
+
+        private void btnShowDataGridView_Click(object sender, EventArgs e)
+        {
+            MyEncryption decr = new();
+            try
+            {
+                var entries = fileManager.AllEncryptedPasswords();
+
+                if (entries != null)
+                {
+                    for (int i = 0; i < entries.Count; i++)
+                    {
+                        if (i < dataGridView1.Rows.Count)
+                        {
+                            var decryptedPassword = decr.Decrypt(entries[i].password);
+                            dataGridView1.Rows[i].Cells[1].Value = decryptedPassword;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

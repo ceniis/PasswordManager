@@ -109,7 +109,7 @@ namespace PasswordManager_WinForms
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            textBox1.PasswordChar = '\0';
+            textBox1.PasswordChar = textBox1.PasswordChar == '\0' ? '●' : '\0';
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
