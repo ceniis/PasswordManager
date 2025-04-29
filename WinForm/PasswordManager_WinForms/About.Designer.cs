@@ -50,7 +50,7 @@
             label1.Font = new Font("Corbel", 10F);
             label1.Location = new Point(258, 37);
             label1.Name = "label1";
-            label1.Size = new Size(337, 51);
+            label1.Size = new Size(410, 63);
             label1.TabIndex = 1;
             label1.Text = "2nd year student of the \r\nNational Aerospace University \"Kharkiv Aviation Institute\"\r\nI like dogs, cats and capybaras 💜\r\n";
             // 
@@ -60,7 +60,7 @@
             label2.Font = new Font("Corbel", 10F);
             label2.Location = new Point(258, 138);
             label2.Name = "label2";
-            label2.Size = new Size(379, 68);
+            label2.Size = new Size(449, 84);
             label2.TabIndex = 2;
             label2.Text = "The app allowes you to create strong passwords and save them. \r\nYou can find them again by the login\r\nBut before you'll gain an acces, please confirm that it's you in \r\nLogin window 😉\r\n";
             // 
@@ -147,7 +147,7 @@
             label3.Font = new Font("Corbel", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(258, 18);
             label3.Name = "label3";
-            label3.Size = new Size(179, 19);
+            label3.Size = new Size(220, 24);
             label3.TabIndex = 14;
             label3.Text = "Author: Akhtyrska Sofiia";
             // 
@@ -165,9 +165,9 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.Gainsboro;
-            label4.Location = new Point(440, 284);
+            label4.Location = new Point(437, 282);
             label4.Name = "label4";
-            label4.Size = new Size(70, 15);
+            label4.Size = new Size(89, 20);
             label4.TabIndex = 16;
             label4.Text = "I love Andrii";
             // 

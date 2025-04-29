@@ -11,10 +11,14 @@ namespace PasswordManager_WinForms
     {
         Password pass = new(); // password
         FileManager fileManager = new();
+        private string _namePlaceholder = "Enter name of password";
+        private string _passwordPlaceholder = "Enter password";
 
         public MainForm()
         {
             InitializeComponent();
+            textBoxName.Text = _namePlaceholder;
+            textBoxPassword.Text = _passwordPlaceholder;
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -55,8 +59,16 @@ namespace PasswordManager_WinForms
             MyEncryption decr = new();
             try
             {
-                textBoxPassword.Text = decr.Decrypt(fileManager.FindEncryptedPassword(textBoxName.Text));
-                textBoxPassword.PasswordChar = '●';
+                var passwords = fileManager.AllEncryptedPasswords();
+                if (passwords.Any(p => p.name == textBoxName.Text))
+                {
+                    textBoxPassword.Text = decr.Decrypt(fileManager.FindEncryptedPassword(textBoxName.Text));
+                    textBoxPassword.PasswordChar = '●';
+                }
+                else
+                {
+                    throw new Exception($"Password with name: {textBoxName.Text} does not exist");
+                }
             }
             catch (Exception ex)
             {
@@ -100,7 +112,7 @@ namespace PasswordManager_WinForms
 
         private void textBoxPassword_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) btnGenerate_Click(sender, e);
+            if (e.KeyCode == Keys.Enter) btnSave_Click(sender, e);
         }
 
         private void textBoxPassword_KeyPress(object sender, KeyPressEventArgs e)
@@ -110,7 +122,7 @@ namespace PasswordManager_WinForms
 
         private void textBoxName_Enter(object sender, EventArgs e)
         {
-            if (textBoxName.Text == "Meow-meow...")
+            if (textBoxName.Text == _namePlaceholder)
             {
                 textBoxName.Text = "";
                 textBoxName.ForeColor = Color.Black;
@@ -119,26 +131,29 @@ namespace PasswordManager_WinForms
 
         private void textBoxName_Leave(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxName.Text))
+            if (textBoxName.Text == "")
             {
-                textBoxName.Text = "Meow-meow...";
+                textBoxName.Text = _namePlaceholder;
                 textBoxName.ForeColor = Color.Gray;
             }
         }
 
         private void textBoxPassword_Enter(object sender, EventArgs e)
         {
-            if (textBoxName.Text == "123abc...")
+            if (textBoxPassword.Text == _passwordPlaceholder)
             {
-                textBoxName.Text = "";
-                textBoxName.ForeColor = Color.Black;
+                textBoxPassword.Text = "";
+                textBoxPassword.ForeColor = Color.Black;
             }
         }
 
         private void textBoxPassword_Leave(object sender, EventArgs e)
         {
-            textBoxName.Text = "123abc...";
-            textBoxName.ForeColor = Color.Gray;
+            if (textBoxPassword.Text == "")
+            {
+                textBoxPassword.Text = _passwordPlaceholder;
+                textBoxPassword.ForeColor = Color.Gray;
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
