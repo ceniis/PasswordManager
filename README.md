@@ -5,3 +5,6 @@
 
 Save and create your passwords.
 The app allows you to create strong and secure passwords. It saves them encrypted, so you can not worry about someone to find them in your PC. Also the app ask a logination password that you need to create when you open the app for the first time. That password is saved heshed.
+
+
+![Screenshot 2025-05-08 142114](https://github.com/user-attachments/assets/e652faac-3541-45d2-a33c-602d36eb619d)
