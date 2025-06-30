@@ -17,6 +17,7 @@ namespace PasswordManagerDraft
         // fluids
         public string name { get; set; } // the name of the password
         public string password { get; set; } // the password
+        public string login { get; set; } // user's login (optional)
         private readonly string specialSymbols = "!@#$%^&*()_+-=[]{}|;:',.<>?/№";
         private readonly string alphabet = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
         private int PasswordIndex = 0; // password char's index

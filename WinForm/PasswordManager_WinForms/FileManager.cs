@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using Newtonsoft.Json;
+using PasswordManagerDraft;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -14,47 +15,43 @@ namespace PasswordManager_WinForms
     {
         private static readonly string DataFile = FilePaths.DataFile; // file directory
 
-        public class Data
-        {
-            public string name { get; set; }
-            public string password { get; set; }
-        }
-
         /// <summary>
         /// Save to Data.json file a new record
         /// </summary>
         /// <param name="passwordName"></param>
         /// <param name="password"></param>
-        public void SaveToFile(string passwordName, string password)
+        public void SaveToFile(string passwordName, string passwordLogin, string password)
         {
             Directory.CreateDirectory(Path.GetDirectoryName(DataFile)!); // if the directory exist
-            List<Data> entries = new();
+            List<Password> entries = new();
 
             if (File.Exists(DataFile))
             {
                 string existingJson = File.ReadAllText(DataFile);
+
                 if (!string.IsNullOrWhiteSpace(existingJson))
                 {
                     try
                     {
-                        entries = JsonConvert.DeserializeObject<List<Data>>(existingJson) ?? new List<Data>();
+                        entries = JsonConvert.DeserializeObject<List<Password>>(existingJson) ?? new List<Password>();
                     }
                     catch (Exception)
                     {
                         // if the file is corrupted
-                        entries = new List<Data>();
+                        entries = new List<Password>();
                     }
                 }
             }
 
             var existing = entries.FirstOrDefault(e => e.name == passwordName);
+
             if (existing != null)
             {
                 existing.password = password;
             }
             else
             {
-                entries.Add(new Data { name = passwordName, password = password });
+                entries.Add(new Password { name = passwordName, password = password, login = passwordLogin });
             }
 
             string updatedJson = JsonConvert.SerializeObject(entries, Formatting.Indented);
@@ -65,21 +62,21 @@ namespace PasswordManager_WinForms
         /// <summary>
         /// Searches for the password by name
         /// </summary>
-        public string? FindEncryptedPassword(string passwordName)
+        public Password? FindEncryptedPassword(string passwordName)
         {
             if (!File.Exists(DataFile)) return null;
 
             try
             {
                 string json = File.ReadAllText(DataFile);
-                List<Data>? allPasswords = JsonConvert.DeserializeObject<List<Data>>(json);
+                List<Password>? allPasswords = JsonConvert.DeserializeObject<List<Password>>(json);
 
                 if (allPasswords == null) return null;
 
-                foreach (Data entry in allPasswords)
-                {
+                foreach (Password entry in allPasswords)
+                {  
                     if (entry.name == passwordName)
-                        return entry.password;
+                        return entry;
                 }
             }
             catch (IOException ex)
@@ -93,14 +90,14 @@ namespace PasswordManager_WinForms
         /// <summary>
         /// Return all records
         /// </summary>
-        public List<Data>? AllEncryptedPasswords()
+        public List<Password>? AllEncryptedPasswords()
         {
             if (!File.Exists(DataFile)) return null;
 
             try
             {
                 string json = File.ReadAllText(DataFile);
-                return JsonConvert.DeserializeObject<List<Data>>(json);
+                return JsonConvert.DeserializeObject<List<Password>>(json);
             }
             catch (IOException ex)
             {
@@ -117,7 +114,7 @@ namespace PasswordManager_WinForms
             if (!File.Exists(FilePaths.DataFile)) return 0;
 
             string json = File.ReadAllText(FilePaths.DataFile);
-            var data = JsonConvert.DeserializeObject<List<Data>>(json);
+            var data = JsonConvert.DeserializeObject<List<Password>>(json);
             return data?.Count ?? 0;
         }
     }
