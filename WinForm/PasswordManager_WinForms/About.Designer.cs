@@ -47,20 +47,20 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Corbel", 10F);
-            label1.Location = new Point(258, 37);
+            label1.Font = new Font("Candara", 10.8F);
+            label1.Location = new Point(258, 51);
             label1.Name = "label1";
-            label1.Size = new Size(410, 63);
+            label1.Size = new Size(451, 66);
             label1.TabIndex = 1;
             label1.Text = "2nd year student of the \r\nNational Aerospace University \"Kharkiv Aviation Institute\"\r\nI like dogs, cats and capybaras 💜\r\n";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Corbel", 10F);
+            label2.Font = new Font("Candara", 10.8F);
             label2.Location = new Point(258, 138);
             label2.Name = "label2";
-            label2.Size = new Size(449, 84);
+            label2.Size = new Size(502, 88);
             label2.TabIndex = 2;
             label2.Text = "The app allowes you to create strong passwords and save them. \r\nYou can find them again by the login\r\nBut before you'll gain an acces, please confirm that it's you in \r\nLogin window 😉\r\n";
             // 
@@ -76,7 +76,7 @@
             btnMeow.FlatStyle = FlatStyle.Flat;
             btnMeow.Font = new Font("Calisto MT", 10F);
             btnMeow.ForeColor = Color.White;
-            btnMeow.Location = new Point(598, 236);
+            btnMeow.Location = new Point(682, 236);
             btnMeow.Margin = new Padding(0);
             btnMeow.Name = "btnMeow";
             btnMeow.Size = new Size(78, 66);
@@ -93,7 +93,7 @@
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
             btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Location = new Point(649, 0);
+            btnBack.Location = new Point(715, 9);
             btnBack.Margin = new Padding(0);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(45, 42);
@@ -144,10 +144,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Corbel", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Candara", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(258, 18);
             label3.Name = "label3";
-            label3.Size = new Size(220, 24);
+            label3.Size = new Size(200, 22);
             label3.TabIndex = 14;
             label3.Text = "Author: Akhtyrska Sofiia";
             // 
@@ -175,7 +175,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(697, 311);
+            ClientSize = new Size(769, 311);
             Controls.Add(label4);
             Controls.Add(pictureBox1);
             Controls.Add(label3);

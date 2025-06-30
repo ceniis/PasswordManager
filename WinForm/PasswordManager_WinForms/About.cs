@@ -66,7 +66,6 @@ namespace PasswordManager_WinForms
 
         private void About_Load(object sender, EventArgs e)
         {
-            // toolTips settings
             toolTip1.SetToolTip(btnBack, "Back");
             toolTip1.SetToolTip(btnGitHub, "See GitHub");
             toolTip1.SetToolTip(btnInst, "See Instagram");

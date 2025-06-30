@@ -46,7 +46,7 @@
             label1.AutoSize = true;
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("Yu Gothic UI Semibold", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(140, 10);
+            label1.Location = new Point(140, 9);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(145, 41);
@@ -58,7 +58,7 @@
             // 
             InputTitleLabel.AutoSize = true;
             InputTitleLabel.Font = new Font("Yu Gothic UI", 11F);
-            InputTitleLabel.Location = new Point(8, 76);
+            InputTitleLabel.Location = new Point(8, 67);
             InputTitleLabel.Margin = new Padding(4, 0, 4, 0);
             InputTitleLabel.Name = "InputTitleLabel";
             InputTitleLabel.Size = new Size(45, 25);
@@ -70,8 +70,8 @@
             textBox1.Cursor = Cursors.IBeam;
             textBox1.Font = new Font("Yu Gothic UI", 11F);
             textBox1.ForeColor = SystemColors.GrayText;
-            textBox1.Location = new Point(8, 105);
-            textBox1.Margin = new Padding(4);
+            textBox1.Location = new Point(8, 92);
+            textBox1.Margin = new Padding(4, 4, 4, 4);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(385, 32);
             textBox1.TabIndex = 2;
@@ -90,10 +90,10 @@
             btnConfirm.FlatAppearance.MouseOverBackColor = Color.PaleTurquoise;
             btnConfirm.FlatStyle = FlatStyle.Flat;
             btnConfirm.Font = new Font("Yu Gothic UI", 11F);
-            btnConfirm.Location = new Point(8, 145);
+            btnConfirm.Location = new Point(8, 128);
             btnConfirm.Margin = new Padding(0);
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(88, 38);
+            btnConfirm.Size = new Size(88, 34);
             btnConfirm.TabIndex = 3;
             btnConfirm.Text = "OK";
             btnConfirm.UseVisualStyleBackColor = false;
@@ -110,7 +110,7 @@
             btnHelp.Location = new Point(346, -1);
             btnHelp.Margin = new Padding(0);
             btnHelp.Name = "btnHelp";
-            btnHelp.Size = new Size(56, 51);
+            btnHelp.Size = new Size(56, 45);
             btnHelp.TabIndex = 4;
             btnHelp.Text = "❔";
             btnHelp.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             btnClose.Location = new Point(391, 0);
             btnClose.Margin = new Padding(0);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(56, 51);
+            btnClose.Size = new Size(56, 45);
             btnClose.TabIndex = 5;
             btnClose.Text = "❌";
             btnClose.UseVisualStyleBackColor = true;
@@ -145,10 +145,10 @@
             btnShow.FlatStyle = FlatStyle.Flat;
             btnShow.Font = new Font("Corbel", 12F);
             btnShow.ForeColor = Color.Black;
-            btnShow.Location = new Point(391, 105);
+            btnShow.Location = new Point(391, 92);
             btnShow.Margin = new Padding(0);
             btnShow.Name = "btnShow";
-            btnShow.Size = new Size(46, 26);
+            btnShow.Size = new Size(46, 23);
             btnShow.TabIndex = 12;
             btnShow.UseVisualStyleBackColor = false;
             btnShow.Click += btnShow_Click;
@@ -157,7 +157,8 @@
             // 
             linkLabelForgotThePassword.AutoSize = true;
             linkLabelForgotThePassword.Font = new Font("Yu Gothic UI", 11F);
-            linkLabelForgotThePassword.Location = new Point(216, 145);
+            linkLabelForgotThePassword.Location = new Point(216, 128);
+            linkLabelForgotThePassword.Margin = new Padding(2, 0, 2, 0);
             linkLabelForgotThePassword.Name = "linkLabelForgotThePassword";
             linkLabelForgotThePassword.Size = new Size(183, 25);
             linkLabelForgotThePassword.TabIndex = 13;
@@ -167,10 +168,10 @@
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(10F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gainsboro;
-            ClientSize = new Size(446, 194);
+            ClientSize = new Size(446, 171);
             Controls.Add(linkLabelForgotThePassword);
             Controls.Add(btnShow);
             Controls.Add(btnClose);
@@ -179,10 +180,10 @@
             Controls.Add(textBox1);
             Controls.Add(InputTitleLabel);
             Controls.Add(label1);
-            Font = new Font("Yu Gothic UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Font = new Font("Candara", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(4);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginForm";
