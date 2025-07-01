@@ -97,17 +97,19 @@ namespace PasswordManagerDraft
         /// <summary>
         /// Decrypts a password
         /// </summary>
-        public string? Decrypt(string encryptedPassword)
+        public string? Decrypt(Password encryptedPassword)
         {
             try
             {
-                string[] parts = encryptedPassword.Split(':');
+                string[] parts = encryptedPassword.password.Split(':');
+
                 if (parts.Length != 2)
                     throw new FormatException("Invalid encrypted password format.");
 
                 byte[] iv = Convert.FromBase64String(parts[0]);
                 byte[] encryptedData = Convert.FromBase64String(parts[1]);
                 using Aes aes = Aes.Create();
+
                 if (aes == null) throw new Exception("Error creating AES object.");
 
                 aes.Key = key;
@@ -116,6 +118,7 @@ namespace PasswordManagerDraft
                 using MemoryStream memoryStream = new(encryptedData);
                 using CryptoStream cryptoStream = new(memoryStream, aes.CreateDecryptor(), CryptoStreamMode.Read);
                 using StreamReader reader = new(cryptoStream);
+                
                 return reader.ReadToEnd();
             }
             catch (Exception ex)

@@ -11,6 +11,7 @@ namespace PasswordManager_WinForms
     {
         Password pass = new(); // password
         FileManager fileManager = new();
+        MyEncryption decr, encr = new();
         private string _namePlaceholder = "Enter name of password";
         private string _passwordPlaceholder = "Enter password";
 
@@ -27,6 +28,7 @@ namespace PasswordManager_WinForms
             {
                 int size = (int)numericUpDown1.Value;
                 pass.name = textBoxName.Text;
+                // pass.login = textBoxLogin.Text;
                 if (checkBox1.Checked) pass.Create(include: true, size);
                 else pass.Create(include: false, size);
                 textBoxPassword.Text = pass.password;
@@ -40,11 +42,9 @@ namespace PasswordManager_WinForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MyEncryption encr = new();
-
             try
             {
-                fileManager.SaveToFile(textBoxName.Text, encr.Encrypt(textBoxPassword.Text));
+                fileManager.SaveToFile(textBoxName.Text, textBoxLogin.Text, encr.Encrypt(textBoxPassword.Text));
                 labelCount_Click(sender, e);
                 MessageBox.Show("Saved successfully\nP.S. if password with the same name has already exist, it was rewritten", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -56,13 +56,13 @@ namespace PasswordManager_WinForms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            MyEncryption decr = new();
             try
             {
-                var passwords = fileManager.AllEncryptedPasswords();
-                if (passwords.Any(p => p.name == textBoxName.Text))
-                {
-                    textBoxPassword.Text = decr.Decrypt(fileManager.FindEncryptedPassword(textBoxName.Text));
+                var password = fileManager.FindEncryptedPassword(textBoxName.Text);
+
+                if (password != null)
+                {                    
+                    textBoxPassword.Text = decr.Decrypt(password);
                     textBoxPassword.PasswordChar = '●';
                 }
                 else
@@ -170,7 +170,7 @@ namespace PasswordManager_WinForms
             dataGridView1.ReadOnly = true;
 
             // tips settings
-            toolTip1.SetToolTip(btnSearch, "Find the password among the saved ones");
+            toolTip1.SetToolTip(btnSearch, "Find the password among the saved ones by its name");
             toolTip1.SetToolTip(btnSave, "Save an encrypted password");
             toolTip1.SetToolTip(btnGenerate, "Generate a password");
             toolTip1.SetToolTip(btnClear, "Clear the fields");
@@ -179,11 +179,11 @@ namespace PasswordManager_WinForms
             toolTip1.SetToolTip(btnHelp, "Information");
             toolTip1.SetToolTip(btnViewAll, "Show all saved passwords");
             toolTip1.SetToolTip(labelCount, "How many passwords is saved");
+            toolTip1.SetToolTip(btnDelete, "delete the password by its name");
         }
 
         private void btnViewAll_Click(object sender, EventArgs e)
         {
-            MyEncryption decr = new();
             dataGridView1.Rows.Clear();
 
             try
@@ -221,10 +221,9 @@ namespace PasswordManager_WinForms
 
         private void btnShowDataGridView_Click(object sender, EventArgs e)
         {
-            MyEncryption decr = new();
             try
             {
-                var entries = fileManager.AllEncryptedPasswords();
+                List<Password>? entries = fileManager.AllEncryptedPasswords();
 
                 if (entries != null)
                 {
@@ -232,7 +231,7 @@ namespace PasswordManager_WinForms
                     {
                         if (i < dataGridView1.Rows.Count)
                         {
-                            var decryptedPassword = decr.Decrypt(entries[i].password);
+                            string decryptedPassword = decr.Decrypt(entries[i]);
                             dataGridView1.Rows[i].Cells[1].Value = decryptedPassword;
                         }
                     }

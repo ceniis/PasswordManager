@@ -69,7 +69,7 @@ namespace PasswordManager_WinForms
             try
             {
                 string json = File.ReadAllText(DataFile);
-                List<Password>? allPasswords = JsonConvert.DeserializeObject<List<Password>>(json);
+                var allPasswords = AllEncryptedPasswords();
 
                 if (allPasswords == null) return null;
 
