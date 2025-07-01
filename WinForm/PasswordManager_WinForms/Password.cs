@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
-using System.CodeDom.Compiler;
-using System.Globalization;
+﻿using System.Security.Cryptography;
 
 namespace PasswordManagerDraft
 {
@@ -31,6 +24,11 @@ namespace PasswordManagerDraft
             }
 
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(name, password, login);
         }
 
         /// <summary>

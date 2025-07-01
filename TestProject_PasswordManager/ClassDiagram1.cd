@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TestProject_PasswordManager.Tests">
+    <Position X="4.5" Y="0.5" Width="4" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="TestProject_PasswordManager.Tests.MyEncryptionTests">
+        <TypeIdentifier>
+          <NewMemberFileName>UnitTest1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="TestProject_PasswordManager.Tests.PasswordTests">
+        <TypeIdentifier>
+          <NewMemberFileName>UnitTest1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UnitTest1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -16,7 +16,6 @@ namespace PasswordManager_WinForms
 
         static FilePaths()
         {
-            // Ensure the directory exists
             if (!Directory.Exists(BaseDirectory))
                 Directory.CreateDirectory(BaseDirectory);
         }
