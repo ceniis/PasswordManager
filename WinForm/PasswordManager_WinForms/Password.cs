@@ -23,6 +23,16 @@ namespace PasswordManagerDraft
         private int PasswordIndex = 0; // password char's index
         private char[] draft { get; set; } // chars' container
 
+        public override bool Equals(object? obj)
+        {
+            if (obj is Password other)
+            {
+                return this.name == other.name && this.password == other.password && this.login == other.login;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Generates a random number, copies it to class
         /// </summary>
