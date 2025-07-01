@@ -9,17 +9,20 @@ namespace PasswordManager_WinForms
 {
     public partial class MainForm : Form
     {
-        Password pass = new(); // password
-        FileManager fileManager = new();
-        MyEncryption decr, encr = new();
-        private string _namePlaceholder = "Enter name of password";
-        private string _passwordPlaceholder = "Enter password";
+        Password? pass = new Password();
+        FileManager fileManager = new FileManager();
+        MyEncryption decr = new MyEncryption();
+        MyEncryption encr = new MyEncryption();
+        private string _namePlaceholder = "Name of the password...";
+        private string _passwordPlaceholder = "Password...";
+        private string _loginPlaceholder = "Login...";
 
         public MainForm()
         {
             InitializeComponent();
             textBoxName.Text = _namePlaceholder;
             textBoxPassword.Text = _passwordPlaceholder;
+            textBoxLogin.Text = _loginPlaceholder;
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -28,9 +31,11 @@ namespace PasswordManager_WinForms
             {
                 int size = (int)numericUpDown1.Value;
                 pass.name = textBoxName.Text;
-                // pass.login = textBoxLogin.Text;
+                pass.login = textBoxLogin.Text;
+
                 if (checkBox1.Checked) pass.Create(include: true, size);
                 else pass.Create(include: false, size);
+
                 textBoxPassword.Text = pass.password;
                 textBoxPassword.PasswordChar = '●';
             }
@@ -44,7 +49,10 @@ namespace PasswordManager_WinForms
         {
             try
             {
-                fileManager.SaveToFile(textBoxName.Text, textBoxLogin.Text, encr.Encrypt(textBoxPassword.Text));
+                pass.name = textBoxName.Text;
+                pass.password = encr.Encrypt(textBoxPassword.Text);
+                pass.login = textBoxLogin.Text;
+                fileManager.SaveToFile(pass);
                 labelCount_Click(sender, e);
                 MessageBox.Show("Saved successfully\nP.S. if password with the same name has already exist, it was rewritten", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -58,11 +66,11 @@ namespace PasswordManager_WinForms
         {
             try
             {
-                var password = fileManager.FindEncryptedPassword(textBoxName.Text);
+                pass = fileManager.FindEncryptedPassword(textBoxName.Text);
 
-                if (password != null)
-                {                    
-                    textBoxPassword.Text = decr.Decrypt(password);
+                if (pass != null)
+                {
+                    textBoxPassword.Text = decr.Decrypt(pass);
                     textBoxPassword.PasswordChar = '●';
                 }
                 else
@@ -78,8 +86,9 @@ namespace PasswordManager_WinForms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            textBoxName.Text = "";
-            textBoxPassword.Text = "";
+            textBoxName.Text = _namePlaceholder;
+            textBoxPassword.Text = _passwordPlaceholder;
+            textBoxLogin.Text = _loginPlaceholder;
             numericUpDown1.Value = 12;
             dataGridView1.Rows.Clear();
             checkBox1.Checked = true;
@@ -122,38 +131,22 @@ namespace PasswordManager_WinForms
 
         private void textBoxName_Enter(object sender, EventArgs e)
         {
-            if (textBoxName.Text == _namePlaceholder)
-            {
-                textBoxName.Text = "";
-                textBoxName.ForeColor = Color.Black;
-            }
+            TextBox_Enter(textBoxName, _namePlaceholder);
         }
 
         private void textBoxName_Leave(object sender, EventArgs e)
         {
-            if (textBoxName.Text == "")
-            {
-                textBoxName.Text = _namePlaceholder;
-                textBoxName.ForeColor = Color.Gray;
-            }
+            TextBox_Leave(textBoxName, _namePlaceholder);
         }
 
         private void textBoxPassword_Enter(object sender, EventArgs e)
         {
-            if (textBoxPassword.Text == _passwordPlaceholder)
-            {
-                textBoxPassword.Text = "";
-                textBoxPassword.ForeColor = Color.Black;
-            }
+            TextBox_Enter(textBoxPassword, _passwordPlaceholder);
         }
 
         private void textBoxPassword_Leave(object sender, EventArgs e)
         {
-            if (textBoxPassword.Text == "")
-            {
-                textBoxPassword.Text = _passwordPlaceholder;
-                textBoxPassword.ForeColor = Color.Gray;
-            }
+            TextBox_Leave(textBoxPassword, _passwordPlaceholder);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -179,7 +172,7 @@ namespace PasswordManager_WinForms
             toolTip1.SetToolTip(btnHelp, "Information");
             toolTip1.SetToolTip(btnViewAll, "Show all saved passwords");
             toolTip1.SetToolTip(labelCount, "How many passwords is saved");
-            toolTip1.SetToolTip(btnDelete, "delete the password by its name");
+            toolTip1.SetToolTip(btnDelete, "Delete the password by its name");
         }
 
         private void btnViewAll_Click(object sender, EventArgs e)
@@ -231,7 +224,7 @@ namespace PasswordManager_WinForms
                     {
                         if (i < dataGridView1.Rows.Count)
                         {
-                            string decryptedPassword = decr.Decrypt(entries[i]);
+                            var decryptedPassword = decr.Decrypt(entries[i]);
                             dataGridView1.Rows[i].Cells[1].Value = decryptedPassword;
                         }
                     }
@@ -241,6 +234,39 @@ namespace PasswordManager_WinForms
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox_Leave(System.Windows.Forms.TextBox textBox, string _placeholder)
+        {
+            if (textBox.Text == "")
+            {
+                textBoxPassword.Text = _placeholder;
+                textBoxPassword.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TextBox_Enter(System.Windows.Forms.TextBox textBox, string _placeholder)
+        {
+            if (textBox.Text == _placeholder)
+            {
+                textBoxPassword.Text = "";
+                textBoxPassword.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBoxLogin_Leave(object sender, EventArgs e)
+        {
+            TextBox_Leave(textBoxLogin, _loginPlaceholder);
+        }
+
+        private void textBoxLogin_Enter(object sender, EventArgs e)
+        {
+            TextBox_Enter(textBoxLogin, _loginPlaceholder);
         }
     }
 }

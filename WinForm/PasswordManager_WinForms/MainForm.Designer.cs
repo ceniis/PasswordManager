@@ -370,6 +370,7 @@
             btnDelete.TabIndex = 17;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // label5
             // 
@@ -392,6 +393,8 @@
             textBoxLogin.Name = "textBoxLogin";
             textBoxLogin.Size = new Size(265, 29);
             textBoxLogin.TabIndex = 18;
+            textBoxLogin.Enter += textBoxLogin_Enter;
+            textBoxLogin.Leave += textBoxLogin_Leave;
             // 
             // MainForm
             // 
