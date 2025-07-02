@@ -12,15 +12,20 @@ namespace TestProject_PasswordManager
         public class MyEncryptionTests
         {
             private MyEncryption encryption = new MyEncryption();
+            private Password password = new Password();
 
             [Test]
             public void EncryptDecrypt_ShouldReturnOriginalPassword()
             {
-                string original = "MySecurePassword123!";
-                string encrypted = encryption.Encrypt(original);
-                string decrypted = encryption.Decrypt(encrypted);
+                password.name = "TestPassword";
+                password.password = "MySecurePassword123!";           
+                string encrypted = encryption.Encrypt(password.password);
+                Password test = new Password();
+                test.name = "TestPassword1";
+                test.password = encrypted;
+                string decrypted = encryption.Decrypt(test);
 
-                Assert.AreEqual(original, decrypted);
+                Assert.AreEqual(password.password, decrypted);
             }
 
             [Test]
