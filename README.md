@@ -1,7 +1,7 @@
 # PasswordManager
-![image](https://github.com/user-attachments/assets/ff7f4d08-233a-4b88-91d0-ec8018276524)
-![image](https://github.com/user-attachments/assets/13ffb67f-a99b-48b2-80fb-12bc1c03e3d8)
-![image](https://github.com/user-attachments/assets/8239e82a-d927-43c2-8f22-b8b1e4a3518a)
+![image](https://github.com/user-attachments/assets/ac454bd3-f6f1-49ce-b509-475823ed87c2)
+![image](https://github.com/user-attachments/assets/e4b16140-3dec-48c1-ae45-35b2dfb5396c)
+![image](https://github.com/user-attachments/assets/b8b719b5-f849-4798-8927-712b0f6d126f)
 
 Save and create your passwords.
 The app allows you to create strong and secure passwords. It saves them encrypted, so you can not worry about someone to find them in your PC. Also the app ask a logination password that you need to create when you open the app for the first time. That password is saved heshed.
